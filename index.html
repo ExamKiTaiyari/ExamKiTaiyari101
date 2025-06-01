@@ -5,103 +5,235 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Exam Ki Taiyari</title>
   <link rel="stylesheet" href="style.css" />
-  <!-- Particle Library -->
-  <!-- Orbitron - Digital/Clock Style Font -->
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script> 
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
-
-  <!-- Overlay for Focus Time -->
-  <div class="overlay" id="focusOverlay">
-    <div class="overlay-content">
-      <h2>Choose Focus Time</h2>
-
-      <div class="time-options">
-        <button class="time-btn" data-time="25">25 min</button>
-        <button class="time-btn" data-time="30">30 min</button>
-        <button class="time-btn" data-time="50">50 min</button>
-        <button class="time-btn" data-time="60">60 min</button>
-        <button class="time-btn custom-btn" id="customFocusBtn">Custom</button>
-      </div>
-
-      <!-- Custom Range Slider -->
-      <div class="slider-container" id="customFocusSlider" style="display: none;">
-        <input type="range" min="1" max="60" value="25" class="custom-slider" id="focusTimeSlider" />
-        <div class="slider-value-display" id="focusSliderValue">25 min</div>
-      </div>
-
-      <!-- Start Session Button - Always Visible -->
-      <button onclick="applyFocus()" class="start-custom">Start Session</button>
-    </div>
-  </div>
-
-  <!-- Overlay for Break Time -->
-  <div class="overlay" id="customBreakOverlay" style="display: none;">
-    <div class="overlay-content">
-      <h2>Choose Break Time</h2>
-
-      <div class="time-options">
-        <button class="time-btn" data-time="2">2 min</button>
-        <button class="time-btn" data-time="5">5 min</button>
-        <button class="time-btn" data-time="10">10 min</button>
-        <button class="time-btn" data-time="15">15 min</button>
-        <button class="time-btn custom-btn" id="customBreakBtn">Custom</button>
-      </div>
-
-      <!-- Custom Range Slider -->
-      <div class="slider-container" id="customBreakSlider" style="display: none;">
-        <input type="range" min="1" max="60" value="5" class="custom-slider" id="breakTimeSlider" />
-        <div class="slider-value-display" id="breakSliderValue">5 min</div>
-      </div>
-
-      <!-- Start Break Button - Always Visible -->
-      <button id="startBreakBtn" class="start-custom">Start Break</button>
-    </div>
-  </div>
-
   <!-- Header -->
   <header>
     <h1>Exam Ki Taiyari</h1>
     <nav>
-      <a href="#">Home</a>
-      <a href="#">Pomodoro</a>
-      <a href="#">Tips</a>
-      <a href="#">About</a>
+      <a href="#" onclick="showHome()" class="nav-link active">Home</a>
+      <a href="#" onclick="showPomodoro()" class="nav-link">Pomodoro</a>
+      <a href="#" onclick="showGamesSection()" class="nav-link">Games</a>
+      <a href="#" class="nav-link">Tips</a>
+      <a href="#" class="nav-link">About</a>
     </nav>
-    <div class="mode-indicator focus-mode" id="modeIndicator">Focus Mode</div>
   </header>
 
-  <!-- Main Section -->
-  <section class="pomodoro-section">
-    <div class="timer" id="timer">25:00</div>
+  <!-- Home Page -->
+  <section class="home-section" id="homeSection">
+    <div class="hero-content">
+      <h1 class="hero-title">Welcome to Exam Ki Taiyari</h1>
+      <p class="hero-subtitle">Your ultimate study companion for exam preparation</p>
 
-    <div class="controls">
-      <button class="start" id="startBtn">Start</button>
-      <button class="pause" id="pauseBtn">Pause</button>
-      <button class="reset" id="resetBtn">Reset</button>
-    </div>
+      <div class="features-grid">
+        <div class="feature-card" onclick="showPomodoro()">
+          <div class="feature-icon">🍅</div>
+          <h3>Pomodoro Timer</h3>
+          <p>Focus sessions with customizable time intervals</p>
+          <button class="feature-btn">Start Studying</button>
+        </div>
 
-    <!-- Stats Bar -->
-    <div class="stats-bar">
-      <div class="stat-item">
-        <div class="stat-label">Pomodoros Completed</div>
-        <div class="stat-value" id="pomodoroCount">0</div>
-      </div>
-      <div class="stat-divider"></div>
-      <div class="stat-item">
-        <div class="stat-label">Total Study Time</div>
-        <div class="stat-value" id="studyHours">0</div>
-        <div class="stat-unit">hrs</div>
+        <div class="feature-card">
+          <div class="feature-icon">📚</div>
+          <h3>Study Tips</h3>
+          <p>Proven techniques to improve your learning</p>
+          <button class="feature-btn">Learn More</button>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Progress Tracking</h3>
+          <p>Monitor your study sessions and achievements</p>
+          <button class="feature-btn">View Stats</button>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <h3>Goal Setting</h3>
+          <p>Set and achieve your study objectives</p>
+          <button class="feature-btn">Set Goals</button>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer>
-    &copy; 2025 Exam Ki Taiyari. All Rights Reserved.
-  </footer>
+  <!-- Pomodoro Page -->
+  <section class="pomodoro-section" id="pomodoroSection" style="display: none;">
+    <!-- Overlay for Focus Time -->
+    <div class="overlay" id="focusOverlay">
+      <div class="overlay-content">
+        <h2>Choose Focus Time</h2>
 
+        <div class="time-options">
+          <button class="time-btn" data-time="25">25 min</button>
+          <button class="time-btn" data-time="30">30 min</button>
+          <button class="time-btn" data-time="50">50 min</button>
+          <button class="time-btn" data-time="60">60 min</button>
+          <button class="time-btn custom-btn" id="customFocusBtn">Custom</button>
+        </div>
+
+        <!-- Custom Range Slider -->
+        <div class="slider-container" id="customFocusSlider" style="display: none;">
+          <input type="range" min="1" max="60" value="25" class="custom-slider" id="focusTimeSlider" />
+          <div class="slider-value-display" id="focusSliderValue">25 min</div>
+        </div>
+
+        <!-- Start Session Button - Always Visible -->
+        <button onclick="applyFocus()" class="start-custom">Start Session</button>
+      </div>
+    </div>
+
+    <!-- Overlay for Break Time -->
+    <div class="overlay" id="customBreakOverlay" style="display: none;">
+      <div class="overlay-content">
+        <h2>Choose Break Time</h2>
+
+        <div class="time-options">
+          <button class="time-btn" data-time="2">2 min</button>
+          <button class="time-btn" data-time="5">5 min</button>
+          <button class="time-btn" data-time="10">10 min</button>
+          <button class="time-btn" data-time="15">15 min</button>
+          <button class="time-btn custom-btn" id="customBreakBtn">Custom</button>
+        </div>
+
+        <!-- Custom Range Slider -->
+        <div class="slider-container" id="customBreakSlider" style="display: none;">
+          <input type="range" min="1" max="60" value="5" class="custom-slider" id="breakTimeSlider" />
+          <div class="slider-value-display" id="breakSliderValue">5 min</div>
+        </div>
+
+        <!-- Start Break Button - Always Visible -->
+        <button id="startBreakBtn" class="start-custom">Start Break</button>
+      </div>
+    </div>
+
+    <div class="mode-indicator focus-mode" id="modeIndicator">Focus Mode</div>
+
+    <div class="timer-container">
+      <div class="timer" id="timer">25:00</div>
+
+      <div class="controls">
+        <button class="start" id="startBtn">Start</button>
+        <button class="pause" id="pauseBtn">Pause</button>
+        <button class="reset" id="resetBtn">Reset</button>
+      </div>
+
+      <!-- Stats Bar -->
+      <div class="stats-bar">
+        <div class="stat-item">
+          <div class="stat-label">Pomodoros Completed</div>
+          <div class="stat-value" id="pomodoroCount">0</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="stat-label">Total Study Time</div>
+          <div class="stat-value" id="studyHours">0</div>
+          <div class="stat-unit">hrs</div>
+        </div>
+      </div>
+
+      <!-- Gamification Stats -->
+      <div class="gamification-bar">
+        <div class="game-stat-item">
+          <div class="stat-label">Level</div>
+          <div class="stat-value" id="userLevel">1</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="game-stat-item">
+          <div class="stat-label">Experience</div>
+          <div class="xp-container">
+            <div class="xp-bar-bg">
+              <div class="xp-bar" id="xpBar"></div>
+            </div>
+            <div class="stat-value" id="experience">0/100</div>
+          </div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="game-stat-item">
+          <div class="stat-label">Coins</div>
+          <div class="stat-value" id="coins">0</div>
+          <div class="coin-icon">🪙</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="game-stat-item">
+          <div class="stat-label">Streak</div>
+          <div class="stat-value" id="currentStreak">0</div>
+          <div class="streak-icon">🔥</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Games Section -->
+  <section class="games-section" id="gamesSection" style="display: none;">
+    <div class="games-container">
+      <h2>🎮 Mini Games</h2>
+      <p class="games-subtitle">Take a break and play some games!</p>
+
+      <div class="games-grid">
+        <div class="game-card" onclick="startGame('snake')">
+          <div class="game-icon">🐍</div>
+          <h3>Snake Game</h3>
+          <p>Classic snake game to relax your mind</p>
+          <button class="game-btn">Play Now</button>
+        </div>
+
+        <div class="game-card" onclick="startGame('memory')">
+          <div class="game-icon">🧠</div>
+          <h3>Memory Match</h3>
+          <p>Test your memory with card matching</p>
+          <button class="game-btn">Play Now</button>
+        </div>
+
+        <div class="game-card" onclick="startGame('typing')">
+          <div class="game-icon">⌨️</div>
+          <h3>Typing Speed</h3>
+          <p>Improve your typing speed and accuracy</p>
+          <button class="game-btn">Play Now</button>
+        </div>
+
+        <div class="game-card" onclick="startGame('puzzle')">
+          <div class="game-icon">🧩</div>
+          <h3>Number Puzzle</h3>
+          <p>Solve number puzzles to train your brain</p>
+          <button class="game-btn">Play Now</button>
+        </div>
+      </div>
+
+      <button onclick="showPomodoro()" class="back-to-timer">Back to Timer</button>
+    </div>
+
+    <!-- Game Canvas Container -->
+    <div class="game-canvas-container" id="gameCanvasContainer" style="display: none;">
+      <div class="game-header">
+        <h3 id="currentGameTitle">Snake Game</h3>
+        <div class="game-controls">
+          <span id="gameScore">Score: 0</span>
+          <button onclick="closeGame()" class="close-game-btn">✕</button>
+        </div>
+      </div>
+      <canvas id="gameCanvas" width="400" height="400"></canvas>
+      <div class="game-instructions" id="gameInstructions">
+        Use arrow keys to move the snake
+      </div>
+    </div>
+  </section>
+
+  <!-- Game Canvas Container (Hidden by default) -->
+  <div id="gameCanvasContainer" class="game-canvas-container" style="display: none;">
+    <div class="game-header">
+      <h3 id="currentGameTitle">Game</h3>
+      <div class="game-controls">
+        <span id="gameScore">Score: 0</span>
+        <button onclick="closeGame()" class="close-game-btn">×</button>
+      </div>
+    </div>
+    <canvas id="gameCanvas" width="400" height="400"></canvas>
+    <div id="gameInstructions" class="game-instructions">Game instructions</div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
