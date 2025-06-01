@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Exam Ki Taiyari</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Particle Library -->
+  <!-- Orbitron - Digital/Clock Style Font -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script> 
+</head>
+<body>
+
+  <!-- Overlay for Focus Time -->
+  <div class="overlay" id="focusOverlay">
+    <div class="overlay-content">
+      <h2>Choose Focus Time</h2>
+
+      <div class="time-options">
+        <button class="time-btn" data-time="25">25 min</button>
+        <button class="time-btn" data-time="30">30 min</button>
+        <button class="time-btn" data-time="50">50 min</button>
+        <button class="time-btn" data-time="60">60 min</button>
+        <button class="time-btn custom-btn" id="customFocusBtn">Custom</button>
+      </div>
+
+      <!-- Custom Range Slider -->
+      <div class="slider-container" id="customFocusSlider" style="display: none;">
+        <input type="range" min="1" max="60" value="25" class="custom-slider" id="focusTimeSlider" />
+        <div class="slider-value-display" id="focusSliderValue">25 min</div>
+      </div>
+
+      <!-- Start Session Button - Always Visible -->
+      <button onclick="applyFocus()" class="start-custom">Start Session</button>
+    </div>
+  </div>
+
+  <!-- Overlay for Break Time -->
+  <div class="overlay" id="customBreakOverlay" style="display: none;">
+    <div class="overlay-content">
+      <h2>Choose Break Time</h2>
+
+      <div class="time-options">
+        <button class="time-btn" data-time="2">2 min</button>
+        <button class="time-btn" data-time="5">5 min</button>
+        <button class="time-btn" data-time="10">10 min</button>
+        <button class="time-btn" data-time="15">15 min</button>
+        <button class="time-btn custom-btn" id="customBreakBtn">Custom</button>
+      </div>
+
+      <!-- Custom Range Slider -->
+      <div class="slider-container" id="customBreakSlider" style="display: none;">
+        <input type="range" min="1" max="60" value="5" class="custom-slider" id="breakTimeSlider" />
+        <div class="slider-value-display" id="breakSliderValue">5 min</div>
+      </div>
+
+      <!-- Start Break Button - Always Visible -->
+      <button id="startBreakBtn" class="start-custom">Start Break</button>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <h1>Exam Ki Taiyari</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Pomodoro</a>
+      <a href="#">Tips</a>
+      <a href="#">About</a>
+    </nav>
+    <div class="mode-indicator focus-mode" id="modeIndicator">Focus Mode</div>
+  </header>
+
+  <!-- Main Section -->
+  <section class="pomodoro-section">
+    <div class="timer" id="timer">25:00</div>
+
+    <div class="controls">
+      <button class="start" id="startBtn">Start</button>
+      <button class="pause" id="pauseBtn">Pause</button>
+      <button class="reset" id="resetBtn">Reset</button>
+    </div>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+      <div class="stat-item">
+        <div class="stat-label">Pomodoros Completed</div>
+        <div class="stat-value" id="pomodoroCount">0</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-label">Total Study Time</div>
+        <div class="stat-value" id="studyHours">0</div>
+        <div class="stat-unit">hrs</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Exam Ki Taiyari. All Rights Reserved.
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
